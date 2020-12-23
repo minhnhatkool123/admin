@@ -9,23 +9,27 @@ function Navbar({ addWidthBody }) {
     // const showSidebar = () => {
     //     setAddWidthBody(!addWidthBody)
     // }
-    const [activeicon, setActiveicon] = useState("true");
-
+    const [activeicon, setActiveicon] = useState(0);
+    //const [listactive, setListactive] = useState(SidebarData);
+    const clickIcon = (index) => {
+        setActiveicon(index)
+        console.log(index);
+    }
 
     return (
 
         <div className={addWidthBody ? "l-navbar show" : "l-navbar"} id="nav-bar">
             <nav className="nav">
                 <div>
-                    <Link to="/" className="nav__logo">
+                    <div className="nav__logo">
                         <i className="fab fa-google nav__logo-icon" />
                         <span className="nav__logo-name">MNKOOL</span>
-                    </Link>
+                    </div>
 
                     <div className="nav__list">
                         {SidebarData.map((item, index) => {
                             return (
-                                <Link key={index} className={item.cName} to={item.path}>
+                                <Link key={index} className={item.cName + (index === activeicon ? " active" : "")} to={item.path} onClick={() => clickIcon(index)}>
                                     <i className={item.icon}></i>
                                     <span className={item.spanName}>{item.title}</span>
                                 </Link>

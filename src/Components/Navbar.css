@@ -58,6 +58,19 @@
 .nav__icon {
     font-size: 1.25rem;
 }
+
+.active {
+    color: white;
+}
+
+.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 32px;
+    background-color: var(--white-color);
+}
 /* NAV END */
 
 @media screen and (min-width: 768px) {
