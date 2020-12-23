@@ -1,0 +1,85 @@
+.header {
+    width: 100%;
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    background-color: var(--white-color);
+    z-index: var(--z-fixed);
+    transition: 0.5s;
+    box-shadow: 0px 2px 7px #ccc;
+}
+
+.header__toggle {
+    color: var(--first-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+}
+
+.notifications {
+    color: var(--first-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.account__info__name {
+    display: flex;
+}
+
+.info__name {
+    margin-left: 1rem;
+}
+
+.position__name {
+    color: #e85347;
+    font-weight: 600;
+}
+
+.person__name {
+    font-weight: 700;
+}
+
+.header__img {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+
+.header__img img {
+    width: 40px;
+}
+
+@media screen and (min-width: 768px) {
+    .header {
+        height: calc(var(--header-height) + 1rem);
+        padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+    }
+
+    .header__img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .header__img img {
+        width: 45px;
+    }
+
+    /*Add padding body desktop*/
+    .body-pd {
+        padding-left: calc(var(--nav-width) + 188px);
+    }
+}
