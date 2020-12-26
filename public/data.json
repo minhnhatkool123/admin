@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "Asus Vivobook 14 A415",
+        "sku": "Vivobooka41504CF",
+        "price": 120000,
+        "stock": 10,
+        "branch": "TUF/ROG Gaming",
+        "image": "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Dell Vivobook 14 A415",
+        "sku": "Vivobooka41504CF",
+        "price": 100000,
+        "stock": 15,
+        "branch": "TUF/ROG",
+        "image": "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Chú gà boy ăn loz",
+        "sku": "Vivobooka41504CF",
+        "price": 100000,
+        "stock": 150,
+        "branch": "Dell",
+        "image": "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg"
+    }
+]

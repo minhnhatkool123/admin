@@ -217,7 +217,7 @@
     width: 0px;
     /* width: 23vw; */
     margin-top: 88px;
-    height: 100vh;
+    height: 95vh;
     right: 0;
     top: -22px;
     background-color: white;
@@ -338,6 +338,14 @@
     justify-content: center;
     align-items: center;
     color: white;
+    cursor: pointer;
+}
+
+.save__product__btn input[type="submit"] {
+    display: none;
+}
+
+.save__product__btn label {
     cursor: pointer;
 }
 

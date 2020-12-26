@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-export default function ProductItem() {
+export default function ProductItem({ product, clickdel }) {
     const [dropdownshow, setDropdownshow] = useState(false);
     const clickDropDownShow = () => setDropdownshow(!dropdownshow);
     const more = useRef();
@@ -22,34 +22,51 @@ export default function ProductItem() {
     }, []);
 
 
+    const clickdelitem = (product) => {
+        clickdel(product);
+    }
+
+
     return (
         <div className="product__item">
             <div className="tag__name__check">
                 <input type="checkbox" />
             </div>
+            {/* "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg" */}
             <div className="tag__name__name">
-                <img src="https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg" />
+                <img src={product.image} alt="hinhanh" />
                 <span>
                     <strong>
-                        Asus Vivobook 14 A415
-            </strong>
+                        {product.title}
+                        {/* Asus Vivobook 14 A415 */}
+                    </strong>
                 </span>
             </div>
             <div className="tag__name__sku">
-                <span>Vivobooka41504CF</span>
+                <span>
+                    {/* Vivobooka41504CF */}
+                    {product.sku}
+                </span>
             </div>
             <div className="tag__name__price">
                 <span>
-                    <strong>18.290.000 ₫</strong>
+                    <strong>
+                        {product.price}
+                        {/* 18.290.000 ₫ */}
+                    </strong>
                 </span>
             </div>
             <div className="tag__name__stock">
-                <span>10</span>
+                <span>
+                    {product.stock}
+                    {/* 10 */}
+                </span>
             </div>
             <div className="tag__name__branch">
                 <span>
-                    TUF/ROG Gaming
-                 </span>
+                    {product.branch}
+                    {/* TUF/ROG Gaming */}
+                </span>
             </div>
             <div className="tag__name__more" ref={more}>
                 <div className="btn__down" onClick={clickDropDownShow}>
@@ -70,7 +87,7 @@ export default function ProductItem() {
                             <span>View Product</span>
                         </a>
                     </div>
-                    <div className="dropdown__item">
+                    <div className="dropdown__item" onClick={clickdelitem}>
                         <a href="#contact">
                             <i className="far fa-trash-alt" />
                             <span>Delete Product</span>

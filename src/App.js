@@ -1,11 +1,10 @@
 import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Navbar from './Components/Navbar';
 import Header from './Header/Header';
+import ProductMain from './PageProduct/ProductMain';
 import Home from './Pages/Home';
-import Products from './Pages/Products'
-import ProductMain from './PageProduct/ProductMain'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const [addWidthBody, setAddWidthBody] = useState(false);
