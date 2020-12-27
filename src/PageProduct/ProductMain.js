@@ -3,8 +3,18 @@ import ProductBody from './ProductBody'
 import './PageProduct.css'
 import ProductAdd from './ProductAdd'
 import axios from 'axios';
+import ProductEdit from './ProductEdit';
 
 export default function ProductMain({ addWidthBody }) {
+
+    const [infoproductedit, setInfoproductedit] = useState({
+        title: "",
+        sku: "",
+        price: "",
+        stock: "",
+        branch: "",
+        image: "",
+    });
 
     const [infoproducts, setInfoproducts] = useState([]);
     const getData = async () => {
@@ -21,6 +31,7 @@ export default function ProductMain({ addWidthBody }) {
 
 
     const [addproductshow, setAddproductshow] = useState(false);
+    const [editproductshow, setEditproductshow] = useState(false);
     const clickAddProductShow = () => {
         setAddproductshow(!addproductshow);
     }
@@ -42,6 +53,26 @@ export default function ProductMain({ addWidthBody }) {
 
         afterDelete(product.id);
     }
+
+
+    // const loadUser = async () => {
+    //     const result = await axios.get(`http://localhost:3000/producttest?title=1`);
+    //     //setProduct(result.data);
+    //     setInfoproductedit(result.data[0]);
+    //     console.log("QWER", result.data);
+    // }
+    // useEffect(() => {
+    //     loadUser();
+    // }, []);
+
+    const clickeditmain = (product) => {
+        setEditproductshow(!editproductshow);
+        const newProduct = {
+            ...product,
+        }
+        setInfoproductedit(newProduct);
+        //console.log("ID CUA SP:", infoproductedit);
+    }
     return (
         <main id="product__main">
             <div className="product__main__top">
@@ -62,10 +93,11 @@ export default function ProductMain({ addWidthBody }) {
                 </div>
             </div>
             {/* {addproductshow && <ProductAdd />} */}
-            <div className={addWidthBody ? (addproductshow ? "shadow__container show__shadowhasnav" : "shadow__container") : (addproductshow ? "shadow__container show__shadownonav" : "shadow__container")}>
+            <div className={addWidthBody ? ((addproductshow || editproductshow) ? "shadow__container show__shadowhasnav" : "shadow__container") : ((addproductshow || editproductshow) ? "shadow__container show__shadownonav" : "shadow__container")}>
             </div>
             <ProductAdd addproductshow={addproductshow} setAddproductshow={setAddproductshow} setInfoproducts={setInfoproducts} infoproducts={infoproducts} />
-            <ProductBody infoproducts={infoproducts} clickdel={clickdelmain} />
+            <ProductEdit editproductshow={editproductshow} setEditproductshow={setEditproductshow} setInfoproducts={setInfoproducts} infoproductedit={infoproductedit} />
+            <ProductBody infoproducts={infoproducts} clickdel={clickdelmain} clickedit={clickeditmain} />
         </main>
     )
 }

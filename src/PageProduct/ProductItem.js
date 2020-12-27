@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-export default function ProductItem({ product, clickdel }) {
+export default function ProductItem({ product, clickdel, clickedit }) {
     const [dropdownshow, setDropdownshow] = useState(false);
     const clickDropDownShow = () => setDropdownshow(!dropdownshow);
     const more = useRef();
 
     const handleClickOut = e => {
         if (more.current.contains(e.target)) {
-            //console.log(e.target);
+
             return;
         }
         // outside click
@@ -23,7 +23,13 @@ export default function ProductItem({ product, clickdel }) {
 
 
     const clickdelitem = (product) => {
+        setDropdownshow(!dropdownshow);
         clickdel(product);
+    }
+
+    const clickedititem = (product) => {
+        setDropdownshow(!dropdownshow);
+        clickedit(product);
     }
 
 
@@ -75,23 +81,23 @@ export default function ProductItem({ product, clickdel }) {
                     </span>
                 </div>
                 <div id="myDropdown" className={dropdownshow ? "dropdown-content showdropdown" : "dropdown-content"}>
-                    <div className="dropdown__item">
-                        <a href="#home">
+                    <div className="dropdown__item" onClick={clickedititem}>
+                        <div>
                             <i className="far fa-edit" />
                             <span>Edit Product</span>
-                        </a>
+                        </div>
                     </div>
-                    <div className="dropdown__item">
-                        <a href="#about">
+                    <div className="dropdown__item" >
+                        <div>
                             <i className="far fa-eye" />
                             <span>View Product</span>
-                        </a>
+                        </div>
                     </div>
                     <div className="dropdown__item" onClick={clickdelitem}>
-                        <a href="#contact">
+                        <div>
                             <i className="far fa-trash-alt" />
                             <span>Delete Product</span>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>

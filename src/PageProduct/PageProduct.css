@@ -184,7 +184,7 @@
     height: 40px;
 }
 
-.dropdown__item a {
+.dropdown__item div {
     font-size: 16px;
     text-decoration: none;
     padding: 10px 18px 10px 25px;
@@ -192,6 +192,7 @@
     display: flex;
     align-items: center;
     color: #526484;
+    cursor: pointer;
 }
 
 .dropdown__item span {

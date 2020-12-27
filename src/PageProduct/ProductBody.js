@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ProductItem from './ProductItem'
-export default function ProductBody({ infoproducts, clickdel }) {
+export default function ProductBody({ infoproducts, clickdel, clickedit }) {
     //const [infoproducts, setInfoproducts] = useState([]);
     // const getData = () => {
     //     fetch('http://localhost:3000/producttest', {
@@ -56,7 +56,7 @@ export default function ProductBody({ infoproducts, clickdel }) {
 
             {infoproducts.map((product, index) => {
                 return (
-                    <ProductItem product={product} key={index} clickdel={() => clickdel(product)} />
+                    <ProductItem product={product} key={index} clickdel={() => clickdel(product)} clickedit={() => clickedit(product)} />
 
                 )
             })}

@@ -1,13 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 
-
-import { v1 as uuidv1 } from 'uuid';
-
-
-
-export default function ProductAdd({ addproductshow, setAddproductshow, setInfoproducts, infoproducts }) {
-
+export default function ProductEdit({ editproductshow, setEditproductshow, setInfoproducts, infoproductedit }) {
     const [product, setProduct] = useState({
         title: "",
         sku: "",
@@ -18,7 +12,23 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
     })
 
 
+
+
     const { title, sku, price, stock, branch } = product;
+    const loadProduct = () => {
+        const newProduct = {
+            ...infoproductedit,
+        }
+        //console.log("NEW PRO", newProduct);
+        setProduct(newProduct);
+    }
+    useEffect(() => {
+        loadProduct();
+    }, [infoproductedit]);
+
+
+
+
 
     const onInputChange = e => {
         //console.log([e.target.name]);
@@ -26,50 +36,31 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
         //console.log(e.target.value);
     };
 
+    const loadAfterEdit = async () => {
+        const result = await axios.get("http://localhost:3000/producttest");
+        const newListProduct = [...result.data];
+        setInfoproducts(newListProduct);
+    }
+
+
+
     const onSubmit = () => {
-        //e.preventDefault();
 
-
-        const newProduct = {
-            ...product,
-            id: uuidv1(),
-        };
-
-        console.log(newProduct);
-
-        axios.post('http://localhost:3000/producttest', newProduct).then(res => {
-            if (res.status === 201) {
-
-
-                const newListProduct = [...infoproducts];
-                newListProduct.push(newProduct);
-                setInfoproducts(newListProduct);
-                const clearProduct = {
-                    title: "",
-                    sku: "",
-                    price: "",
-                    stock: "",
-                    branch: "",
-                    image: "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
-                }
-                setProduct(clearProduct);
-                // const asd = {};
-                // setProduct(asd);
-            }
-            else {
-                //console.log("status test", res.statusText);
-                alert("thêm sản phẩm thất bại");
-            }
+        axios.put(`http://localhost:3000/producttest/${infoproductedit.id}`, product).then(res => {
+            loadAfterEdit();
 
         }).catch((error) => alert(error));
 
     }
 
+
+
+
     const addproductcontainer = useRef();
     const [image, setImage] = useState();
     const clickSaveProduct = () => {
         onSubmit();
-        setAddproductshow(!addproductshow);
+        setEditproductshow(!editproductshow);
     }
 
 
@@ -87,16 +78,8 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             return;
         }
         // outside click
-        const clearProduct = {
-            title: "",
-            sku: "",
-            price: "",
-            stock: "",
-            branch: "",
-            image: "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
-        }
-        setProduct(clearProduct);
-        setAddproductshow(false);
+
+        setEditproductshow(false);
     };
 
     useEffect(() => {
@@ -105,14 +88,14 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             document.removeEventListener("mousedown", handleClickOut);
         };
     }, []);
-    // onSubmit={e => onSubmit(e)}
+
     return (
-        <div className={addproductshow ? "add__product__container show__add__product" : "add__product__container"} ref={addproductcontainer}>
+        <div className={editproductshow ? "add__product__container show__add__product" : "add__product__container"} ref={addproductcontainer}>
             <form className="add__product__container__content" >
                 <div className="add__product__container__content__head">
-                    <h5>New Product</h5>
+                    <h5>Edit Product</h5>
                     <div className>
-                        <p>Add information and add new product.</p>
+                        <p>Edit information.</p>
                     </div>
                 </div>
                 <div className="add__product__container__content__body">
@@ -174,12 +157,10 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                         </div>
                         <div className="flex__btn__imge__save">
                             <div className="add__image">
-                                <input type="file" id="file" accept="image/*" onChange={onImageChange} />
-                                <label htmlFor="file">Choose Image</label>
+                                <input type="file" id="fileedit" accept="image/*" onChange={onImageChange} />
+                                <label htmlFor="fileedit">Choose Image</label>
                             </div>
                             <div className="save__product__btn" id="sub_mit" onClick={clickSaveProduct} >
-                                {/* <input type="submit" id="submit"></input>
-                                <label htmlFor="submit"><i className="fas fa-plus" />&nbsp;Save Product</label> */}
 
                                 <i className="fas fa-plus" />&nbsp;Save Product
                             </div>
