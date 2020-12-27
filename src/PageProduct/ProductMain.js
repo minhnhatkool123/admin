@@ -7,6 +7,9 @@ import ProductEdit from './ProductEdit';
 
 export default function ProductMain({ addWidthBody }) {
 
+    const [issearch, setIssearch] = useState(false);
+    const [itemsearch, setItemsearch] = useState([]);
+
     const [infoproductedit, setInfoproductedit] = useState({
         title: "",
         sku: "",

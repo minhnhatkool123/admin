@@ -14,7 +14,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
         price: "",
         stock: "",
         branch: "",
-        image: "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg"
+        image: ""
     })
 
 
@@ -50,7 +50,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                     price: "",
                     stock: "",
                     branch: "",
-                    image: "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
+                    image: "",//"https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
                 }
                 setProduct(clearProduct);
                 // const asd = {};
@@ -75,7 +75,11 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
 
     const onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
-
+            const newProduct = {
+                ...product,
+                image: URL.createObjectURL(event.target.files[0]),//"https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
+            }
+            setProduct(newProduct);
             setImage(URL.createObjectURL(event.target.files[0]));
 
         }
@@ -93,7 +97,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             price: "",
             stock: "",
             branch: "",
-            image: "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
+            image: "",//"https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
         }
         setProduct(clearProduct);
         setAddproductshow(false);

@@ -8,7 +8,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
         price: "",
         stock: "",
         branch: "",
-        image: "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg"
+        image: ""
     })
 
 
@@ -67,8 +67,13 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
     const onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
 
-            setImage(URL.createObjectURL(event.target.files[0]));
-
+            const newProduct = {
+                ...product,
+                image: URL.createObjectURL(event.target.files[0]),
+            }
+            setProduct(newProduct);
+            //setImage(URL.createObjectURL(event.target.files[0]));
+            //product.image = event.target.files[0];
         }
     }
 
@@ -153,7 +158,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
                     </div>
                     <div className="container__image__btn">
                         <div className="image__div__container">
-                            <img src={image} id="upload__image" alt="" />
+                            <img src={product.image} id="upload__image" alt="" />
                         </div>
                         <div className="flex__btn__imge__save">
                             <div className="add__image">
