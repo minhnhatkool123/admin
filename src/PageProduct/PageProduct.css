@@ -262,7 +262,7 @@
 .price__flex {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 13px;
+    /* margin-bottom: 13px; */
 }
 
 .input__regular__price {
@@ -370,4 +370,26 @@
 .show__shadownonav {
     display: block;
     margin-left: 68px;
+}
+
+.input__regular__price {
+    margin-bottom: 13px;
+}
+
+.input__discount__price {
+    margin-bottom: 13px;
+}
+.error__title {
+    margin-top: -10px;
+    margin-bottom: 0px;
+    color: #ff1019;
+}
+
+.add__error__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.border__error__input {
+    border: 1px solid #ff1019;
 }

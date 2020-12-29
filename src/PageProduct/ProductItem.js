@@ -32,6 +32,9 @@ export default function ProductItem({ product, clickdel, clickedit }) {
         clickedit(product);
     }
 
+    const clickviewitem = () => {
+        window.open("https://www.youtube.com/", "_blank");
+    }
 
     return (
         <div className="product__item">
@@ -87,7 +90,7 @@ export default function ProductItem({ product, clickdel, clickedit }) {
                             <span>Edit Product</span>
                         </div>
                     </div>
-                    <div className="dropdown__item" >
+                    <div className="dropdown__item" onClick={clickviewitem}>
                         <div>
                             <i className="far fa-eye" />
                             <span>View Product</span>

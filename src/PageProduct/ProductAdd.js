@@ -1,12 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios';
 
-
+import FormError from './FormError'
 import { v1 as uuidv1 } from 'uuid';
 
 
 
 export default function ProductAdd({ addproductshow, setAddproductshow, setInfoproducts, infoproducts }) {
+
+    const [isInputValid, setIsInputValid] = useState({
+        title: false,
+        sku: false,
+        price: false,
+        stock: false,
+        branch: false
+    });
+    //const [errorMessage, setErrorMessage] = useState("");
+
 
     const [product, setProduct] = useState({
         title: "",
@@ -68,6 +78,38 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
     const addproductcontainer = useRef();
     const [image, setImage] = useState();
     const clickSaveProduct = () => {
+        const result = {
+            title: false,
+            sku: false,
+            price: false,
+            stock: false,
+            branch: false
+        };
+        if (title === "" || price === "" || sku === "" || stock === "" || branch === "") {
+            if (title === "") {
+                result.title = true;
+            }
+            if (price === "") {
+                result.price = true;
+                // setIsInputValid({ price: true });
+            }
+            if (stock === "") {
+                result.stock = true;
+                // setIsInputValid({ stock: true });
+            }
+            if (sku === "") {
+                result.sku = true;
+                // setIsInputValid({ sku: true });
+            }
+            if (branch === "") {
+                result.branch = true;
+                // setIsInputValid({ branch: true });
+            }
+            console.log("RERS", result);
+
+            setIsInputValid(result);
+            return;
+        }
         onSubmit();
         setAddproductshow(!addproductshow);
     }
@@ -91,6 +133,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             return;
         }
         // outside click
+
         const clearProduct = {
             title: "",
             sku: "",
@@ -100,6 +143,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             image: "",//"https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg",
         }
         setProduct(clearProduct);
+        setIsInputValid(false);
         setAddproductshow(false);
     };
 
@@ -109,7 +153,25 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             document.removeEventListener("mousedown", handleClickOut);
         };
     }, []);
-    // onSubmit={e => onSubmit(e)}
+
+    const validateInput = (checkingText) => {
+        if (checkingText === "")
+            return true;
+        else {
+            return false;
+        }
+    }
+
+
+    const handleInputValidation = (e) => {
+        console.log("E của error", e.target.value);
+        let value = validateInput(e.target.value);
+        setIsInputValid({ ...isInputValid, [e.target.name]: value });
+        //setErrorMessage(errorMessage);
+    }
+
+
+
     return (
         <div className={addproductshow ? "add__product__container show__add__product" : "add__product__container"} ref={addproductcontainer}>
             <form className="add__product__container__content" >
@@ -125,18 +187,23 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                             Product Title
                         </label>
                         <div className="input__name__product">
-                            <input type="text" name="title" onChange={e => onInputChange(e)} value={title} />
+                            <input type="text" name="title" onChange={e => onInputChange(e)} value={title} onBlur={handleInputValidation} />
                         </div>
                     </div>
+                    {isInputValid.title && <FormError errorMessage="Not Empty Title" />}
                     <div className="price__flex">
-                        <div className="add__regular__price">
-                            <label htmlFor="form-lable">
-                                Regular Price
+                        <div className="add__error__container">
+                            <div className="add__regular__price">
+                                <label htmlFor="form-lable">
+                                    Regular Price
                              </label>
-                            <div className="input__regular__price">
-                                <input type="text" name="price" onChange={e => onInputChange(e)} value={price} />
+                                <div className="input__regular__price">
+                                    <input type="text" name="price" onChange={e => onInputChange(e)} value={price} onBlur={handleInputValidation} />
+                                </div>
                             </div>
+                            {isInputValid.price && <FormError errorMessage="Not Empty Price" />}
                         </div>
+
                         <div className="add__discount__price">
                             <label htmlFor="form-lable">
                                 Discount Price
@@ -147,22 +214,31 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                         </div>
                     </div>
                     <div className="price__flex">
-                        <div className="add__regular__price">
-                            <label htmlFor="form-lable">
-                                Stock
+                        <div className="add__error__container">
+                            <div className="add__regular__price">
+                                <label htmlFor="form-lable">
+                                    Stock
                             </label>
-                            <div className="input__regular__price">
-                                <input type="text" name="stock" onChange={e => onInputChange(e)} value={stock} />
+                                <div className="input__regular__price">
+                                    <input type="text" name="stock" onChange={e => onInputChange(e)} value={stock} onBlur={handleInputValidation} />
+                                </div>
                             </div>
+                            {isInputValid.stock && <FormError errorMessage="Not Empty Stock" />}
                         </div>
-                        <div className="add__discount__price">
-                            <label htmlFor="form-lable">
-                                SKU
+
+
+                        <div className="add__error__container">
+                            <div className="add__discount__price">
+                                <label htmlFor="form-lable">
+                                    SKU
                             </label>
-                            <div className="input__discount__price">
-                                <input type="text" name="sku" onChange={e => onInputChange(e)} value={sku} />
+                                <div className="input__discount__price ">
+                                    <input type="text" name="sku" onChange={e => onInputChange(e)} value={sku} onBlur={handleInputValidation} />
+                                </div>
                             </div>
+                            {isInputValid.sku && <FormError errorMessage="Not Empty SKU" />}
                         </div>
+
                     </div>
                     <div className="add__description">
                         <label htmlFor="form-lable">
@@ -174,7 +250,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                     </div>
                     <div className="container__image__btn">
                         <div className="image__div__container">
-                            <img src={image} id="upload__image" alt="" />
+                            <img src={product.image} id="upload__image" alt="" />
                         </div>
                         <div className="flex__btn__imge__save">
                             <div className="add__image">

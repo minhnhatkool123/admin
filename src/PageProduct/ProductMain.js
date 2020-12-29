@@ -7,8 +7,10 @@ import ProductEdit from './ProductEdit';
 
 export default function ProductMain({ addWidthBody }) {
 
-    const [issearch, setIssearch] = useState(false);
+    //const [issearch, setIssearch] = useState(false);
     const [itemsearch, setItemsearch] = useState([]);
+    const [valuesearch, setValuesearch] = useState("");
+
 
     const [infoproductedit, setInfoproductedit] = useState({
         title: "",
@@ -58,15 +60,17 @@ export default function ProductMain({ addWidthBody }) {
     }
 
 
-    // const loadUser = async () => {
-    //     const result = await axios.get(`http://localhost:3000/producttest?title=1`);
-    //     //setProduct(result.data);
-    //     setInfoproductedit(result.data[0]);
-    //     console.log("QWER", result.data);
-    // }
-    // useEffect(() => {
-    //     loadUser();
-    // }, []);
+
+
+    useEffect(() => {
+        setItemsearch(
+            infoproducts.filter(product => {
+                return product.title.toLowerCase().includes(valuesearch.toLowerCase())
+            })
+        )
+
+    }, [valuesearch, infoproducts])
+
 
     const clickeditmain = (product) => {
         setEditproductshow(!editproductshow);
@@ -84,7 +88,7 @@ export default function ProductMain({ addWidthBody }) {
                 </div>
                 <div className="product__main__top__col__right">
                     <div className="search__product">
-                        <input type="text" className="input__serach" placeholder="Quick search" />
+                        <input type="text" className="input__serach" placeholder="Quick search name" onChange={e => setValuesearch(e.target.value)} />
                         <div className>
                             <i className="fas fa-search" id="icon__search" />
                         </div>
@@ -100,7 +104,7 @@ export default function ProductMain({ addWidthBody }) {
             </div>
             <ProductAdd addproductshow={addproductshow} setAddproductshow={setAddproductshow} setInfoproducts={setInfoproducts} infoproducts={infoproducts} />
             <ProductEdit editproductshow={editproductshow} setEditproductshow={setEditproductshow} setInfoproducts={setInfoproducts} infoproductedit={infoproductedit} />
-            <ProductBody infoproducts={infoproducts} clickdel={clickdelmain} clickedit={clickeditmain} />
+            <ProductBody infoproducts={itemsearch} clickdel={clickdelmain} clickedit={clickeditmain} />
         </main>
     )
 }

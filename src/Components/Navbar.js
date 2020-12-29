@@ -9,11 +9,16 @@ function Navbar({ addWidthBody }) {
     // const showSidebar = () => {
     //     setAddWidthBody(!addWidthBody)
     // }
-    const [activeicon, setActiveicon] = useState(0);
+    const [activeicon, setActiveicon] = useState(() => {
+        const initActiveIcon = localStorage.getItem("icon_active") || 0;
+        console.log("ACTIVE ICON", initActiveIcon);
+        return initActiveIcon;
+    });
     //const [listactive, setListactive] = useState(SidebarData);
     const clickIcon = (index) => {
         setActiveicon(index)
-        console.log(index);
+        console.log("click icon", index);
+        localStorage.setItem("icon_active", index);
     }
 
     return (
@@ -29,7 +34,7 @@ function Navbar({ addWidthBody }) {
                     <div className="nav__list">
                         {SidebarData.map((item, index) => {
                             return (
-                                <Link key={index} className={item.cName + (index === activeicon ? " active" : "")} to={item.path} onClick={() => clickIcon(index)}>
+                                <Link key={index} className={item.cName + (index == activeicon ? " active" : "")} to={item.path} onClick={() => clickIcon(index)}>
                                     <i className={item.icon}></i>
                                     <span className={item.spanName}>{item.title}</span>
                                 </Link>
