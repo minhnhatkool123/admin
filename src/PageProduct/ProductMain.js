@@ -7,23 +7,41 @@ import ProductEdit from './ProductEdit';
 
 export default function ProductMain({ addWidthBody }) {
 
-    //const [issearch, setIssearch] = useState(false);
+
+
     const [itemsearch, setItemsearch] = useState([]);
     const [valuesearch, setValuesearch] = useState("");
 
 
     const [infoproductedit, setInfoproductedit] = useState({
-        title: "",
+        detail: {
+            graphics: "",
+            processor: "",
+            os: "",
+            display: "",
+            memory: "",
+            hardDrive: "",
+            color: "",
+            weight: "",
+            battery: "",
+            ports: "",
+        },
+        images: "",
         sku: "",
+        name: "",
         price: "",
-        stock: "",
-        branch: "",
-        image: "",
+        warranty: "",
+        brand: {
+            name: "",
+            subBrand: "",
+        },
+        status: "",
+        discount: ""
     });
-
+    //http://localhost:3000/producttest
     const [infoproducts, setInfoproducts] = useState([]);
     const getData = async () => {
-        const result = await axios.get("http://localhost:3000/producttest");
+        const result = await axios.get("http://localhost:8080/api/product/laptop/");
         setInfoproducts(result.data);
         console.log(result.data);
     }
@@ -41,22 +59,27 @@ export default function ProductMain({ addWidthBody }) {
         setAddproductshow(!addproductshow);
     }
 
-
+    // /product/
     const afterDelete = async id => {
-        await axios.delete(`http://localhost:3000/producttest/${id}`);
+        const result = await axios.delete(`http://localhost:8080/api/product/laptop/remove/${id}`);
+        if (result.status === 200)
+            alert("Xóa thành công");
         getData();
     }
 
     const clickdelmain = (product) => {
-        console.log(product);
-        const index = infoproducts.findIndex(x => x.id === product.id)
-        if (index < 0) {
-            alert("ko có id đó");
-            //console.log(product.id);
-            return;
-        }
+        console.log(product._id);
+        const index = infoproducts.findIndex(x => x._id === product._id)
 
-        afterDelete(product.id);
+        let result = window.confirm("Bạn có muốn xóa laptop này");
+        if (result == true) {
+            if (index < 0) {
+                alert("Xóa không thành công");
+                //console.log(product.id);
+                return;
+            }
+            afterDelete(product._id);
+        }
     }
 
 
@@ -65,7 +88,7 @@ export default function ProductMain({ addWidthBody }) {
     useEffect(() => {
         setItemsearch(
             infoproducts.filter(product => {
-                return product.title.toLowerCase().includes(valuesearch.toLowerCase())
+                return product.name.toLowerCase().includes(valuesearch.toLowerCase())
             })
         )
 
@@ -77,8 +100,9 @@ export default function ProductMain({ addWidthBody }) {
         const newProduct = {
             ...product,
         }
+        console.log("INFOR CUA SP:", newProduct);
         setInfoproductedit(newProduct);
-        //console.log("ID CUA SP:", infoproductedit);
+
     }
     return (
         <main id="product__main">

@@ -18,10 +18,10 @@ export default function ProductBody({ infoproducts, clickdel, clickedit }) {
                     <span>Price</span>
                 </div>
                 <div className="tag__name__stock">
-                    <span>Stock</span>
+                    <span>Discount</span>
                 </div>
                 <div className="tag__name__branch">
-                    <span>Branch</span>
+                    <span>Brand</span>
                 </div>
                 <div className="tag__name__more">
                     <div className="btn__down__top">

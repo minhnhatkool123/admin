@@ -33,7 +33,8 @@ export default function ProductItem({ product, clickdel, clickedit }) {
     }
 
     const clickviewitem = () => {
-        window.open("https://www.youtube.com/", "_blank");
+        setDropdownshow(!dropdownshow);
+        window.open(`http://localhost:3001/${product.name}?option=${product._id}`, "_blank");
     }
 
     return (
@@ -43,10 +44,10 @@ export default function ProductItem({ product, clickdel, clickedit }) {
             </div>
             {/* "https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg" */}
             <div className="tag__name__name">
-                <img src={product.image} alt="hinhanh" />
+                <img src={product.images} alt="hinhanh" />
                 <span>
                     <strong>
-                        {product.title}
+                        {product.name}
                         {/* Asus Vivobook 14 A415 */}
                     </strong>
                 </span>
@@ -60,20 +61,20 @@ export default function ProductItem({ product, clickdel, clickedit }) {
             <div className="tag__name__price">
                 <span>
                     <strong>
-                        {product.price}
+                        {product.price}₫
                         {/* 18.290.000 ₫ */}
                     </strong>
                 </span>
             </div>
             <div className="tag__name__stock">
                 <span>
-                    {product.stock}
+                    {product.discount}₫
                     {/* 10 */}
                 </span>
             </div>
             <div className="tag__name__branch">
                 <span>
-                    {product.branch}
+                    {product.brand.name}
                     {/* TUF/ROG Gaming */}
                 </span>
             </div>
