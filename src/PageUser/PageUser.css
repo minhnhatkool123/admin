@@ -1,0 +1,177 @@
+.tag__name__user {
+    background-color: white;
+    display: flex;
+    /* justify-content: space-between; */
+    height: 48px;
+    /* border: 1px solid black; */
+    align-items: center;
+    margin-bottom: 10px;
+
+    box-shadow: 2px 2px 1px #ccc;
+}
+
+.tag__name__check__user {
+    padding: 15px 8px 8px 24px;
+}
+
+.tag__name__check__user input {
+    width: 20px;
+    height: 20px;
+}
+
+.tag__name__name__user {
+    width: 615px;
+    padding: 0px 8px;
+}
+
+.tag__name__phone__user {
+    width: 250px;
+    padding: 0px 16px;
+}
+
+.tag__name__birthday__user {
+    width: 255px;
+    padding: 0px 16px;
+}
+
+.tag__name__gmail__user {
+    width: 250px;
+    padding: 0px 0px 0px 16px;
+    margin-right: 18px;
+}
+
+.tag__name__sex__user {
+    width: 150px;
+    padding: 0px 0px 0px 1px;
+}
+
+.tag__name__more__user__user {
+    width: 190px;
+    /* text-align: center; */
+    font-size: 20px;
+    position: relative;
+}
+
+#product__user {
+    margin-top: 89px;
+}
+
+.user__main__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.user__main__top__col__left {
+}
+
+.user__main__top__col__right {
+    display: flex;
+    margin-top: 8px;
+}
+.search__user {
+    width: 187px;
+    height: 36px;
+    border: 1px solid #dbdfea;
+    padding: 7px 16px 7px 16px;
+    display: flex;
+    border-radius: 4px;
+    margin-right: 16px;
+}
+
+.input__serach__user {
+    width: 129px;
+    height: 20px;
+    border: none;
+    background-color: #f5f6fa;
+}
+
+.input__serach__user:focus {
+    outline: none;
+}
+
+#icon__serach__user {
+    width: 40px;
+    height: 40px;
+}
+
+.add__user {
+    width: 170px;
+    height: 36px;
+    background-color: #006e52;
+    border-radius: 4px;
+    padding: 8px 17px 5px 28px;
+    color: white;
+    cursor: pointer;
+}
+
+.add__user:hover {
+    filter: brightness(1.2);
+}
+
+.search__user div {
+    padding: 0px 7px 0px 14px;
+}
+
+#icon__add__user {
+    font-size: 16px;
+}
+
+.image__div__container__user {
+    margin-bottom: 13px;
+    max-height: 210px;
+}
+
+.image__div__container__user img {
+    max-width: 100%;
+    max-height: 180px;
+    display: block;
+}
+
+.dropdown-content__user {
+    width: 220px;
+    height: 100px;
+    padding: 8px 0px;
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    top: 12px;
+    right: 135px;
+    overflow: auto;
+    box-shadow: 0 3px 12px 1px rgba(58, 34, 114, 0.15);
+    border-radius: 4px;
+    z-index: 120;
+}
+
+.showdropdown__user {
+    display: block;
+}
+
+.dropdown__item__user {
+    display: flex;
+    align-items: center;
+    padding: 8px 0px;
+    width: 100%;
+    height: 40px;
+}
+
+.dropdown__item__user div {
+    font-size: 16px;
+    text-decoration: none;
+    padding: 10px 18px 10px 25px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    color: #526484;
+    cursor: pointer;
+}
+
+.dropdown__item__user span {
+    display: block;
+    padding-left: 10px;
+}
+
+.dropdown__item__user:hover {
+    background-color: #ddd;
+}

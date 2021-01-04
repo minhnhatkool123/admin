@@ -5,8 +5,14 @@ import FormError from './FormError'
 
 import { SubBrandDell } from './SubBrandDell';
 import { SubBrandAcer } from './SubBrandAcer';
+import { SubBrandAsus } from './SubBrandAsus';
+import { SubBrandHP } from './SubBrandHP';
+import { SubBrandLenovo } from './SubBrandLenovo';
+import { SubBrandMacbook } from './SubBrandMacbook';
+import { SubBrandRazer } from './SubBrandRazer';
 
 export default function ProductEdit({ editproductshow, setEditproductshow, setInfoproducts, infoproductedit }) {
+
 
     const [subBrand, setSubBrand] = useState([]);
     const [diSabled, setDisabled] = useState(true);
@@ -49,17 +55,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
 
 
 
-    const ChangeSelect = () => {
-        switch (brand.current.value) {
-            case "Dell":
-                //alert("dell");
-                setSubBrand(SubBrandDell);
-                break;
-            case "Acer":
-                setSubBrand(SubBrandAcer);
-                break;
-        }
-    }
+
 
     const DisableInputDiscount = () => {
         if (status.current.value === "discount") {
@@ -67,9 +63,39 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
         }
         else
             setDisabled(true);
+
+    }
+    const hoho = () => {
+        subbrand.current.value = infoproductedit.brand.subBrand;
+        ChangeSelect();
+    }
+    const ChangeSelect = () => {
+        switch (brand.current.value) {
+            case "Dell":
+                setSubBrand(SubBrandDell);
+                break;
+            case "Acer":
+                setSubBrand(SubBrandAcer);
+                break;
+            case "Asus":
+                setSubBrand(SubBrandAsus);
+                break;
+            case "HP":
+                setSubBrand(SubBrandHP);
+                break;
+            case "Lenovo":
+                setSubBrand(SubBrandLenovo);
+                break;
+            case "Macbook":
+                setSubBrand(SubBrandMacbook);
+                break;
+            case "Razer":
+                setSubBrand(SubBrandRazer);
+                break;
+        }
     }
     const setInforProduct = () => {
-
+        // console.log(infoproductedit);
         name.current.value = infoproductedit.name;
         processor.current.value = infoproductedit.detail.processor;
         display.current.value = infoproductedit.detail.display;
@@ -85,16 +111,30 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
         price.current.value = infoproductedit.price;
         warranty.current.value = infoproductedit.warranty;
         brand.current.value = infoproductedit.brand.name;
-        subbrand.current.value = infoproductedit.brand.subBrand;
+        setImage(infoproductedit.images)
         ChangeSelect();
+        subbrand.current.value = infoproductedit.brand.subBrand;
+
+        //console.log("SAU GÁN", brand.current.value);
         status.current.value = infoproductedit.status;
         discount.current.value = infoproductedit.discount;
         DisableInputDiscount();
+
     }
+
+
     useEffect(() => {
-        //console.log(infoproductedit.detail);
+        console.log(infoproductedit.brand.name);
         setInforProduct();
-    }, [infoproductedit, subBrand])
+    }, [infoproductedit])
+
+    useEffect(() => {
+        hoho();
+    }, [subBrand])
+
+
+
+
 
     //const { title, sku, price, stock, branch } = product;
     // const loadProduct = () => {
@@ -122,7 +162,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
     };
 
     const loadAfterEdit = async () => {
-        const result = await axios.get("http://localhost:3000/producttest");
+        const result = await axios.get("http://localhost:8080/api/product/laptop/");
         const newListProduct = [...result.data];
         setInfoproducts(newListProduct);
     }
@@ -130,36 +170,129 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
 
 
     const onSubmit = () => {
-        console.log(name.current.value)
-        // axios.put(`http://localhost:3000/producttest/${infoproductedit.id}`, product).then(res => {
-        //     loadAfterEdit();
+        let gia = +price.current.value;
+        let km = +discount.current.value;
+        if (gia < km) {
+            console.log("GIÁ", price.current.value);
+            console.log("KM", discount.current.value);
+            alert("Price < Discount");
+            return;
+        }
 
-        // }).catch((error) => alert(error));
+        if (status.current.value !== "discount")
+            discount.current.value = "0";
+        console.log(image);
+        const newProduct = {
+            detail: {
+                graphics: graphics.current.value,
+                processor: processor.current.value,
+                os: os.current.value,
+                display: display.current.value,
+                memory: memory.current.value,
+                hardDrive: hardDrive.current.value,
+                color: color.current.value,
+                weight: weight.current.value,
+                battery: battery.current.value,
+                ports: ports.current.value,
+            },
+            images: image,
+            sku: sku.current.value,
+            name: name.current.value,
+            price: price.current.value,
+            warranty: warranty.current.value,
+            brand: {
+                name: brand.current.value,
+                subBrand: subbrand.current.value,
+            },
+            status: status.current.value,
+            discount: discount.current.value
+        }
+        //console.log(name.current.value)
+        axios.put(`http://localhost:8080/api/product/laptop/edit/${infoproductedit._id}`, newProduct).then(res => {
+            loadAfterEdit();
 
+        }).catch((error) => alert(error));
     }
 
+    const [image, setImage] = useState();
 
 
+    // console.log("NGOai", image);
 
     const addproductcontainer = useRef();
-    const [image, setImage] = useState();
     const clickSaveProduct = () => {
+        const result = {
+            name: false,
+            processor: false,
+            display: false,
+            memory: false,
+            hardDrive: false,
+            ports: false,
+            graphics: false,
+            sku: false,
+            price: false,
+            namebrand: false,
+            status: false,
+            discount: false
+        };
+        if (name.current.value === "" || processor.current.value === "" || display.current.value === "" || memory.current.value === "" || hardDrive.current.value === ""
+            || ports.current.value === "" || graphics.current.value === "" || price.current.value === "" || sku.current.value === ""
+            || brand.current.value === "" || status.current.value === "" || (discount.current.value === "" && diSabled === false)) {
+            if (name.current.value === "") {
+                result.name = true;
+            }
+            if (processor.current.value === "") {
+                result.processor = true;
+            }
+            if (display.current.value === "")
+                result.display = true;
+            if (memory.current.value === "")
+                result.memory = true;
+            if (memory.current.value === "")
+                result.hardDrive = true;
+            if (ports.current.value === "")
+                result.ports = true;
+            if (graphics.current.value === "")
+                result.graphics = true;
+            if (price.current.value === "")
+                result.price = true;
+            if (sku.current.value === "")
+                result.sku = true;
+            if (brand.current.value === "")
+                result.namebrand = true;
+            if (status.current.value === "")
+                result.status = true;
+            if (discount.current.value === "" && diSabled === false)
+                result.discount = true;
+            console.log("RERS", result);
+            setIsInputValid(result);
+            return;
+        }
         onSubmit();
         setEditproductshow(!editproductshow);
     }
 
 
-    const onImageChange = (event) => {
-        // if (event.target.files && event.target.files[0]) {
+    const onImageChange = (e) => {
+        const form = new FormData();
+        form.append('image', e.target.files[0]);
 
-        //     const newProduct = {
-        //         ...product,
-        //         image: URL.createObjectURL(event.target.files[0]),
-        //     }
-        //     setProduct(newProduct);
-        //     //setImage(URL.createObjectURL(event.target.files[0]));
-        //     //product.image = event.target.files[0];
-        // }
+        const key = 'fb47ea35cc2cccf63e71a490e83aa335';
+        const url = `https://api.imgbb.com/1/upload?key=${key}`;
+        fetch(url, {
+            method: 'POST',
+            body: form,
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => setImage(data.data.url))
+            .catch(function (error) {
+                alert('error', error);
+            });
     }
 
     const handleClickOut = e => {
@@ -213,7 +346,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
                             Product Name
                         </label>
                         <div className="input__name__product">
-                            <input type="text" name="name" onChange={e => onInputChange(e)} ref={name} onBlur={handleInputValidation} autoComplete="off" />
+                            <input type="text" name="name" ref={name} onBlur={handleInputValidation} autoComplete="off" />
                         </div>
                     </div>
                     {isInputValid.name && <FormError errorMessage="Not Empty Name" />}
@@ -370,6 +503,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
                                         <option value="Asus">Asus</option>
                                         <option value="Acer">Acer</option>
                                         <option value="Lenovo">Lenovo</option>
+                                        <option value="Macbook">Lenovo</option>
                                         <option value="Razer">Razer</option>
                                     </select>
                                 </div>
@@ -386,10 +520,20 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
                                 <div className="input__regular__price">
                                     <select className="select__brand" ref={subbrand} >
                                         {subBrand.map((item) => {
+                                            //console.log(item.name);
+                                            //console.log(subbrand.current.name);
                                             return (
                                                 <option key={item.id} value={item.name}>
                                                     {item.name}
                                                 </option>
+                                                // <> {
+                                                //     item.name === subbrand.current.name ?
+                                                //         <option key={item.id} value={item.name}>
+                                                //             {item.name}
+                                                //         </option> : <option key={item.id} value={item.name} >
+                                                //             {item.name}
+                                                //         </option>
+                                                // }</>
                                             )
                                         })}
                                     </select>
@@ -438,12 +582,12 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
                     </div>
                     <div className="container__image__btn">
                         <div className="image__div__container">
-                            <img src={image} id="upload__image" alt="" />
+                            <img src={image} alt="" />
                         </div>
                         <div className="flex__btn__imge__save">
                             <div className="add__image">
-                                <input type="file" id="file" accept="image/*" onChange={onImageChange} />
-                                <label htmlFor="file">Choose Image</label>
+                                <input type="file" id="file1" accept="image/*" onChange={onImageChange} />
+                                <label htmlFor="file1">Choose Image</label>
                             </div>
                             <div className="save__product__btn" id="sub_mit" onClick={clickSaveProduct} >
 
@@ -455,6 +599,6 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
 
                 </div>
             </form>
-        </div>
+        </div >
     )
 }

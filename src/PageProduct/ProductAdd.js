@@ -5,9 +5,15 @@ import FormError from './FormError'
 
 import { SubBrandDell } from './SubBrandDell';
 import { SubBrandAcer } from './SubBrandAcer';
+import { SubBrandAsus } from './SubBrandAsus';
+import { SubBrandHP } from './SubBrandHP';
+import { SubBrandLenovo } from './SubBrandLenovo';
+import { SubBrandMacbook } from './SubBrandMacbook';
+import { SubBrandRazer } from './SubBrandRazer';
 
 
 export default function ProductAdd({ addproductshow, setAddproductshow, setInfoproducts, infoproducts }) {
+
 
     const [diSabled, setDisabled] = useState(true);
     const [subBrand, setSubBrand] = useState(SubBrandDell);
@@ -51,7 +57,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
 
 
     const onInputChange = e => {
-        if (status.current.value === "discount") {
+        if (status.current.value === "on_sale") {
             setDisabled(false);
         }
         else
@@ -63,7 +69,9 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
     }
 
     const onSubmit = () => {
-        if (price.current.value < discount.current.value) {
+        let gia = +price.current.value;
+        let khuyenmai = +discount.current.value;
+        if (gia < khuyenmai) {
             alert("Price < Discount");
             return;
         }
@@ -172,17 +180,39 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
     }
 
 
-    const onImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            // const newProduct = {
-            //     ...product,
-            //     images: URL.createObjectURL(event.target.files[0]),
-            // }
-            //setProduct(newProduct);
-            console.log(URL.createObjectURL(event.target.files[0]));
-            setImage(URL.createObjectURL(event.target.files[0]));
+    const onImageChange = (e) => {
+        const form = new FormData();
+        form.append('image', e.target.files[0]);
 
-        }
+        const key = 'fb47ea35cc2cccf63e71a490e83aa335';
+        const url = `https://api.imgbb.com/1/upload?key=${key}`;
+        fetch(url, {
+            method: 'POST',
+            body: form,
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data);
+                setImage(data.data.url)
+            })
+            .catch(function (error) {
+                alert('error', error);
+            });
+        //if (event.target.files && event.target.files[0]) {
+        // const newProduct = {
+        //     ...product,
+        //     images: URL.createObjectURL(event.target.files[0]),
+        // }
+        //setProduct(newProduct);
+        //console.log(URL.createObjectURL(event.target.files[0]));
+        //setImage(URL.createObjectURL(event.target.files[0]));
+
+        //}
     }
     const setEmptyAllInput = () => {
         graphics.current.value = processor.current.value = os.current.value = display.current.value = memory.current.value = hardDrive.current.value = "";
@@ -236,6 +266,21 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                 break;
             case "Acer":
                 setSubBrand(SubBrandAcer);
+                break;
+            case "Asus":
+                setSubBrand(SubBrandAsus);
+                break;
+            case "HP":
+                setSubBrand(SubBrandHP);
+                break;
+            case "Lenovo":
+                setSubBrand(SubBrandLenovo);
+                break;
+            case "Macbook":
+                setSubBrand(SubBrandMacbook);
+                break;
+            case "Razer":
+                setSubBrand(SubBrandRazer);
                 break;
         }
 
@@ -414,6 +459,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                                         <option value="Acer">Acer</option>
                                         <option value="Lenovo">Lenovo</option>
                                         <option value="Razer">Razer</option>
+                                        <option value="Macbook">Macbook</option>
                                     </select>
                                 </div>
                             </div>
@@ -453,7 +499,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                                     <select name="status" className="select__brand" ref={status} onBlur={handleInputValidation} onChange={e => onInputChange(e)}>
                                         <option value="incoming">In Coming</option>
                                         <option value="in_stock">In Stock</option>
-                                        <option value="discount">Discount</option>
+                                        <option value="on_sale">Discount</option>
                                     </select>
                                 </div>
                             </div>

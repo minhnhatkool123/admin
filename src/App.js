@@ -4,7 +4,9 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import Header from './Header/Header';
 import ProductMain from './PageProduct/ProductMain';
+import UserMain from './PageUser/UserMain';
 import Home from './Pages/Home';
+import Orders from './PageOrder/Orders';
 
 function App() {
   const [addWidthBody, setAddWidthBody] = useState(false);
@@ -17,6 +19,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/products" component={() => <ProductMain addWidthBody={addWidthBody} />} />
+          <Route path="/users" component={() => <UserMain addWidthBody={addWidthBody} />} />
+          <Route path="/orders" component={Orders} />
         </Switch>
       </Router>
     </div>
