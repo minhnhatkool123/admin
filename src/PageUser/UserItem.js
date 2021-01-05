@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-export default function UserItem() {
+export default function UserItem({ employee, clickdel }) {
     const [dropdownshow, setDropdownshow] = useState(false);
     const clickDropDownShow = () => setDropdownshow(!dropdownshow);
     const moreEmployee = useRef();
@@ -22,39 +22,46 @@ export default function UserItem() {
         };
     }, []);
 
+
+    const clickdelitem = (employee) => {
+        setDropdownshow(!dropdownshow);
+        clickdel(employee);
+    }
+
     return (
         <div className="product__item">
             <div className="tag__name__check">
                 <input type="checkbox" />
             </div>
             <div className="tag__name__name">
-                <img src="https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg" alt="hinhanh" />
+                <img src={employee.avatar} alt="hinhanh" />
                 <span>
                     <strong>
-                        Nguyễn Phạm Minh Nguyệt Đinh Lý Trần Dương Anh
+                        {employee.name}
                     </strong>
                 </span>
             </div>
             <div className="tag__name__sku">
                 <span>
-                    01297776554
+                    {employee.phone}
                 </span>
             </div>
             <div className="tag__name__price">
                 <span>
                     <strong>
-                        12/12/1200
+                        {employee.address}
                     </strong>
                 </span>
             </div>
             <div className="tag__name__stock">
                 <span>
-                    dsadoksahdiasksao@gmail.com
+                    {employee.email}
                 </span>
             </div>
             <div className="tag__name__branch">
                 <span>
-                    Nam
+                    {employee.type === 1 ? "Employee" : "Admin"}
+
                 </span>
             </div>
             <div className="tag__name__more" ref={moreEmployee}>
@@ -64,14 +71,8 @@ export default function UserItem() {
                 </span>
                 </div>
                 <div className={dropdownshow ? "dropdown-content__user showdropdown__user" : "dropdown-content__user"}>
-                    <div className="dropdown__item__user">
-                        <div>
-                            <i className="far fa-edit" />
-                            <span>Edit Employee</span>
-                        </div>
-                    </div>
 
-                    <div className="dropdown__item__user" >
+                    <div className="dropdown__item__user" onClick={clickdelitem}>
                         <div>
                             <i className="far fa-trash-alt" />
                             <span className='span'>Delete Employee</span>

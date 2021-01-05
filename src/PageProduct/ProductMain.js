@@ -63,7 +63,7 @@ export default function ProductMain({ addWidthBody }) {
     const afterDelete = async id => {
         const result = await axios.delete(`http://localhost:8080/api/product/laptop/remove/${id}`);
         if (result.status === 200)
-            alert("Xóa thành công");
+            alert("Delete Success");
         getData();
     }
 
@@ -71,10 +71,10 @@ export default function ProductMain({ addWidthBody }) {
         console.log(product._id);
         const index = infoproducts.findIndex(x => x._id === product._id)
 
-        let result = window.confirm("Bạn có muốn xóa laptop này");
-        if (result == true) {
+        let result = window.confirm("Do you want delete a laptop");
+        if (result === true) {
             if (index < 0) {
-                alert("Xóa không thành công");
+                alert("Delete Fail");
                 //console.log(product.id);
                 return;
             }

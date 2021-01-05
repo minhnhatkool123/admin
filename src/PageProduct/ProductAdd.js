@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios';
 
-import FormError from './FormError'
+import FormError from '../ShowError/FormError';
 
 import { SubBrandDell } from './SubBrandDell';
 import { SubBrandAcer } from './SubBrandAcer';
@@ -64,9 +64,6 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             setDisabled(true);
     };
 
-    const onInputChangeDetail = e => {
-
-    }
 
     const onSubmit = () => {
         let gia = +price.current.value;
@@ -76,7 +73,7 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
             return;
         }
 
-        if (status.current.value !== "discount")
+        if (status.current.value !== "on_sale")
             discount.current.value = 0;
         // if (subbrand.current.value === "")
         //     subbrand.current.value = "Latitude";
@@ -281,6 +278,8 @@ export default function ProductAdd({ addproductshow, setAddproductshow, setInfop
                 break;
             case "Razer":
                 setSubBrand(SubBrandRazer);
+                break;
+            default:
                 break;
         }
 

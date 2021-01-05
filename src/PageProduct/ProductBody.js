@@ -38,8 +38,6 @@ export default function ProductBody({ infoproducts, clickdel, clickedit }) {
 
                 )
             })}
-            {/* <ProductItem />
-            <ProductItem /> */}
         </div>
     )
 }

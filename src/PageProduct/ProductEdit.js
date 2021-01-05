@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 
-import FormError from './FormError'
+import FormError from '../ShowError/FormError'
 
 import { SubBrandDell } from './SubBrandDell';
 import { SubBrandAcer } from './SubBrandAcer';
@@ -58,7 +58,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
 
 
     const DisableInputDiscount = () => {
-        if (status.current.value === "discount") {
+        if (status.current.value === "on_sale") {
             setDisabled(false);
         }
         else
@@ -91,6 +91,8 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
                 break;
             case "Razer":
                 setSubBrand(SubBrandRazer);
+                break;
+            default:
                 break;
         }
     }
@@ -153,7 +155,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
 
 
     const onInputChange = e => {
-        if (status.current.value === "discount") {
+        if (status.current.value === "on_sale") {
             setDisabled(false);
         }
         else
@@ -179,7 +181,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
             return;
         }
 
-        if (status.current.value !== "discount")
+        if (status.current.value !== "on_sale")
             discount.current.value = "0";
         console.log(image);
         const newProduct = {
@@ -553,7 +555,7 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
                                     <select name="status" className="select__brand" ref={status} onBlur={handleInputValidation} onChange={e => onInputChange(e)}>
                                         <option value="incoming">In Coming</option>
                                         <option value="in_stock">In Stock</option>
-                                        <option value="discount">Discount</option>
+                                        <option value="on_sale">Discount</option>
                                     </select>
                                 </div>
                             </div>
