@@ -1,7 +1,16 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './Header.css'
 
 function Header({ addWidthBody, setAddWidthBody }) {
+
+    const user = useRef(JSON.parse(localStorage.getItem('infoUser')));
+
+
+    const logout = () => {
+        localStorage.clear();
+        window.location.href = "http://localhost:3001";
+    }
+
     const showSidebar = () => {
         setAddWidthBody(!addWidthBody)
     }
@@ -13,16 +22,19 @@ function Header({ addWidthBody, setAddWidthBody }) {
                 </div>
                 <div className="header__right">
                     <div className="notifications">
-                        <i className="far fa-bell" />
+                        {/* <i className="far fa-bell" /> */}
                     </div>
                     <div className="account__info__name">
                         <div className="header__img">
-                            <img src="https://admin.thinkpro.vn//backend/uploads/product/avatar/2020/10/6/ideapad314gre_00.jpg" alt="" />
+                            <img src={user.current.avatar} alt="" />
                         </div>
                         <div className="info__name">
-                            <div className="position__name">Admin</div>
-                            <div className="person__name">Nguyễn Phạm Minh Nhật</div>
+                            <div className="position__name">{user.current.type === 1 ? "Employee" : "Admin"}</div>
+                            <div className="person__name">{user.current.name}</div>
                         </div>
+                    </div>
+                    <div className="btn__container__logout" onClick={logout}>
+                        <i className="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
 

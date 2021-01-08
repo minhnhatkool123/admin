@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
+import { formatMoney } from '../formatMoney';
 
 
 
 export default function Order({ order, index, clickConfirm }) {
 
-
+    //console.log("dsadsasdas", new Date(order.date));
 
     const [activeUser, setActiveUser] = useState(false);
     const [activeOrder, setActiveOrder] = useState(false);
@@ -36,7 +37,7 @@ export default function Order({ order, index, clickConfirm }) {
                 <div className="order__content__">{index + 1}</div>
                 <div className="order__content__">{order.date}</div>
                 <div className="order__content__">{order.products.length}</div>
-                <div className="order__content__">{order.total} đ</div>
+                <div className="order__content__">{formatMoney(order.total)} đ</div>
                 <div className="order__content__btn__accept" >
                     <div className={order.status === false ? "btn__accept" : "btn__accept disable__confirm__btn"} onClick={clickConfirmOrder}>
                         {order.status === true ? "  Đã Xác nhận" : "Xác nhận"}
@@ -50,7 +51,7 @@ export default function Order({ order, index, clickConfirm }) {
                 <div className="order__content__ order__detail__">
                     <button className='btn__'
                         onClick={showDetailOrder}>
-                        <i className={activeOrder ? "fas fa-chevron-down" : "fas fa-chevron-up"}></i>
+                        <i className={activeOrder ? "fas fa-chevron-up" : "fas fa-chevron-down"}></i>
                     </button>
                 </div>
             </div>
@@ -81,7 +82,7 @@ export default function Order({ order, index, clickConfirm }) {
 }
 
 const ItemProduct = ({ product }) => {
-    console.log(product);
+    //console.log(product);
     return (
         <div className='item'>
             <div className="container__item__content__order">
@@ -96,11 +97,11 @@ const ItemProduct = ({ product }) => {
 
             <div className='item__price'>
                 <div className='price'>
-                    <strong>{product.price - product.discount} ₫</strong>
+                    <strong>{formatMoney(product.price - product.discount)} ₫</strong>
                 </div>
                 {product.discount !== 0 ? (
                     <div className='price-discount'>
-                        <strike>{product.price} ₫</strike>
+                        <strike>{formatMoney(product.price)} ₫</strike>
                     </div>
                 ) : null}
             </div>

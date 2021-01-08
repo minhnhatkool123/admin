@@ -1,7 +1,7 @@
 export const SidebarData = [
     {
         title: "Dashboard",
-        path: "/",
+        path: "/home",
         icon: "fas fa-th-large nav__icon",
         cName: "nav__link",
         spanName: "nav__name"
@@ -27,5 +27,15 @@ export const SidebarData = [
         icon: "fas fa-scroll nav__icon",
         cName: "nav__link",
         spanName: "nav__name"
+    },
+    {
+        title: "Account",
+        path: "/account",
+        icon: "fas fa-user-circle nav__icon",
+        cName: "nav__link",
+        spanName: "nav__name"
     }
 ]
+
+// fas fa-user-circle
+// fas fa-scroll nav__icon

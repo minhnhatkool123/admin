@@ -1,0 +1,76 @@
+.login {
+    background: linear-gradient(120deg, #2980b9, #8e44ad);
+    height: 100vh;
+}
+
+.form__login {
+    height: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    border-radius: 5px;
+    background: white;
+    transform: translate(-50%, -50%);
+}
+
+.form__login h1 {
+    text-align: center;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid silver;
+}
+
+.container__form {
+    padding: 0px 40px;
+}
+
+.username__div,
+.pass__div {
+    display: flex;
+    flex-direction: column;
+}
+
+.username__label,
+.pass__label {
+    font-size: 18px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+.pass__input,
+.username__input {
+    height: 40px;
+    width: 100%;
+    font-size: 18px;
+    border: 1px solid silver;
+    padding-left: 8px;
+    border-radius: 5px;
+}
+
+.pass__input:focus {
+    outline: none;
+    border: 1px solid #2691d9;
+}
+.username__input:focus {
+    outline: none;
+    border: 1px solid #2691d9;
+}
+
+.btn__login {
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 5px;
+    width: 80px;
+    height: 40px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #2691d9;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn__login:hover {
+    filter: brightness(1.2);
+}

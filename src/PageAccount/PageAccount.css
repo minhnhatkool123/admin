@@ -1,0 +1,283 @@
+.account-information-container {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+}
+.account-information-container .account-information-left {
+    position: relative;
+    width: 20%;
+}
+.account-information-container .account-information-left .menu-wrapper {
+    position: fixed;
+}
+.account-information-container .account-information-left .menu-wrapper .menu-option {
+    border-left: 1px solid #e6e6e6;
+    margin-bottom: 5px;
+}
+.account-information-container .account-information-left .menu-wrapper .menu-option .item-option {
+    padding: 10px 25px;
+}
+.account-information-container .account-information-left .menu-wrapper .menu-option .item-option i {
+    padding-right: 10px;
+    font-size: 22px;
+}
+.account-information-container .account-information-left .menu-wrapper .menu-option .item-option span {
+    font-size: 20px;
+}
+.account-information-container .account-information-left .menu-wrapper .menu-option .active {
+    border-left: 3px solid #06c1d4;
+    font-weight: 600;
+}
+.account-information-container .account-information-left .menu-wrapper .logout-btn {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    display: block;
+    width: 160px;
+    height: 50px;
+    border-radius: 25px;
+    color: white;
+    font-size: 20px;
+    background-color: #06c1d4;
+}
+.account-information-container .account-information-left .menu-wrapper .logout-btn:hover {
+    filter: brightness(1.2);
+}
+.account-information-container .account-information-right {
+    width: 80%;
+}
+.account-information-container .account-information-right .container-information {
+    margin-bottom: 40px;
+}
+.account-information-container .account-information-right .container-information .title {
+    padding-bottom: 20px;
+    font-size: 32px;
+}
+.account-information-container .account-information-right .container-information .wrap-content {
+    border: 1px solid #cccccc;
+    padding: 25px;
+}
+.account-information-container .account-information-right .container-information .wrap-content .form-update {
+    width: 86%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.account-information-container .account-information-right .container-information .wrap-content .form-update .w100 {
+    width: 100% !important;
+    margin: auto;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 10px;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .choose-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .choose-avatar
+    .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    line-height: 100px;
+    font-weight: 600;
+    text-align: center;
+    background: #e3e7ef;
+    margin-bottom: 16px;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .choose-avatar
+    .avatar
+    img {
+    font-size: 0;
+    line-height: 0;
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .choose-avatar
+    label {
+    display: flex;
+    align-items: center;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .choose-avatar
+    label
+    input {
+    display: none;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .choose-avatar
+    label
+    span {
+    color: #414956;
+    font-weight: 600;
+    font-size: 16px;
+    border: 1px solid #e3e7ef;
+    border-radius: 56px;
+    padding: 0 20px;
+    height: 36px;
+    line-height: 35px;
+    text-align: center;
+    display: inline-block;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .choose-avatar
+    label
+    span:hover {
+    background-color: #006e52;
+    color: white;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .input-text {
+    font-size: 18px;
+    display: block;
+    height: 46px;
+    outline: none;
+    border: 1px solid #414141;
+    border-radius: 4px;
+    padding-left: 16px;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .input-text:hover,
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    .input-text:focus {
+    border: 1px solid #006e52;
+    box-shadow: 0 2px 15px -4px rgba(27, 90, 28, 0.4);
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .input-item
+    label {
+    padding-bottom: 8px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.account-information-container .account-information-right .container-information .wrap-content .form-update .notify {
+    padding-top: 10px;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .notify
+    span {
+    font-size: 16px;
+    padding-left: 7px;
+}
+.account-information-container .account-information-right .container-information .wrap-content .form-update .correct i {
+    color: #488a4d;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .correct
+    span {
+    color: #488a4d;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .incorrect
+    i {
+    color: red;
+}
+.account-information-container
+    .account-information-right
+    .container-information
+    .wrap-content
+    .form-update
+    .incorrect
+    span {
+    color: red;
+}
+.account-information-container .account-information-right .container-information .wrap-content .form-update-password {
+    flex-wrap: wrap-reverse;
+}
+.account-information-container .account-information-right .container-information .update-btn {
+    outline: none;
+    border: none;
+    display: block;
+    width: 160px;
+    height: 50px;
+    border-radius: 25px;
+    color: white;
+    font-size: 20px;
+    background-color: #006e52;
+    margin: 24px 0px 0px 74px;
+    cursor: pointer;
+}
+.account-information-container .account-information-right .container-information .update-btn:hover {
+    filter: brightness(1.2);
+}

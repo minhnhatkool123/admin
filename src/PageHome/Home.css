@@ -1,0 +1,164 @@
+#home__main {
+    margin-top: 89px;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list__card {
+    /* width: fit-content; */
+    padding-left: 10px;
+    width: 500px;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    float: right;
+    width: 19%;
+    box-shadow: 2px 2px 1px #ccc;
+    margin-top: 5px;
+}
+
+.card__big {
+    width: 32%;
+    height: 150px;
+}
+
+.card__small {
+    width: 17%;
+}
+
+.card__red {
+    background-color: #ff5370;
+}
+
+.card__blue {
+    background-color: #4099ff;
+}
+
+.card__green {
+    background-color: #2ed8b6;
+}
+
+.card__yellow {
+    background-color: #ffb64d;
+}
+
+.card__orange {
+    background-color: #dd5600;
+}
+
+.card__body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+
+.card__row {
+    display: flex;
+    margin-right: -15px;
+    margin-left: -15px;
+    align-items: center;
+    padding-top: 20px;
+    justify-content: space-between;
+}
+
+.card__col {
+    position: relative;
+    width: 200px;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    color: white;
+}
+
+.card__col h6 {
+    font-size: 30px;
+}
+
+.card__col__auto {
+    position: relative;
+    text-align: right;
+    width: 150px;
+    padding: 0px 40px 15px 15px;
+}
+
+.prod__p__card i {
+    background-color: #fff;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 30px;
+    align-items: center;
+}
+
+.text__c__red {
+    color: #ff5370;
+}
+
+.text__c__blue {
+    color: #4099ff;
+}
+
+.text__c__green {
+    color: #2ed8b6;
+}
+
+.text__c__yellow {
+    color: #ffb64d;
+}
+
+.text__c__orange {
+    color: #dd5600;
+}
+
+.card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: rgba(45, 45, 45, 0.05) 0px 2px 2px, rgba(49, 49, 49, 0.05) 0px 4px 4px,
+        rgba(42, 42, 42, 0.05) 0px 8px 8px, rgba(32, 32, 32, 0.05) 0px 16px 16px, rgba(49, 49, 49, 0.05) 0px 32px 32px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* sản phẩm */
+.product__main__body {
+    padding-top: 30px;
+}
+
+.tag__name {
+    background-color: white;
+    display: flex;
+    height: 48px;
+    align-items: center;
+    margin-bottom: 10px;
+
+    box-shadow: 2px 2px 1px #ccc;
+}
+
+.tag__name__name {
+    width: 615px;
+    padding: 0px 8px;
+}
+
+.tag__name__sku {
+    width: 250px;
+    padding: 0px 16px;
+}
+
+.tag__name__price {
+    width: 255px;
+    padding: 0px 16px;
+}
+
+.tag__name__stock {
+    width: 250px;
+    padding: 0px 0px 0px 16px;
+}
+
+.tag__name__branch {
+    width: 150px;
+    padding: 0px 0px 0px 1px;
+}

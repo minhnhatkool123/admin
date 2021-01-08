@@ -196,3 +196,16 @@
     opacity: 0.4;
     cursor: default;
 }
+
+.flex__container__order {
+    position: relative;
+}
+.flex__container__order h1 {
+    display: inline;
+}
+.react-datepicker-wrapper {
+    position: absolute;
+    display: inline-block;
+    right: 50px;
+    top: 15px;
+}

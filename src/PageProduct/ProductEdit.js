@@ -270,8 +270,11 @@ export default function ProductEdit({ editproductshow, setEditproductshow, setIn
             setIsInputValid(result);
             return;
         }
-        onSubmit();
-        setEditproductshow(!editproductshow);
+        let comfirmEdit = window.confirm("Do you want edit a laptop");
+        if (comfirmEdit === true) {
+            onSubmit();
+            setEditproductshow(!editproductshow);
+        }
     }
 
 

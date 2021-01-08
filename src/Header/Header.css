@@ -83,3 +83,16 @@
         padding-left: calc(var(--nav-width) + 188px);
     }
 }
+
+.btn__container__logout {
+    margin-left: 20px;
+}
+
+.btn__container__logout i {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.btn__container__logout i:hover {
+    color: #006e52;
+}

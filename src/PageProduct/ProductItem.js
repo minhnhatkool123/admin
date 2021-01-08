@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { formatMoney } from '../formatMoney';
 
 export default function ProductItem({ product, clickdel, clickedit }) {
     const [dropdownshow, setDropdownshow] = useState(false);
@@ -34,7 +35,7 @@ export default function ProductItem({ product, clickdel, clickedit }) {
 
     const clickviewitem = () => {
         setDropdownshow(!dropdownshow);
-        window.open(`http://localhost:3001/${product.name}?option=${product._id}`, "_blank");
+        window.open(`http://localhost:3000/${product.name}?option=${product._id}`, "_blank");
     }
 
     return (
@@ -61,7 +62,7 @@ export default function ProductItem({ product, clickdel, clickedit }) {
             <div className="tag__name__price">
                 <span>
                     <strong>
-                        {product.price}₫
+                        {formatMoney(product.price)}₫
                         {/* 18.290.000 ₫ */}
                     </strong>
                 </span>

@@ -38,12 +38,12 @@ export default function ProductMain({ addWidthBody }) {
         status: "",
         discount: ""
     });
-    //http://localhost:3000/producttest
+
     const [infoproducts, setInfoproducts] = useState([]);
     const getData = async () => {
+
         const result = await axios.get("http://localhost:8080/api/product/laptop/");
         setInfoproducts(result.data);
-        console.log(result.data);
     }
 
     useEffect(() => {
