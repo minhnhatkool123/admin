@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-export default function FormError({ errorMessage }) {
-    return (
-        <div className="error__title">
-            <small >{errorMessage}</small>
-        </div>
-    )
+export default function FormError({ errorMessage, id }) {
+	return (
+		<div className='error__title' id={id}>
+			<small>{errorMessage}</small>
+		</div>
+	);
 }
